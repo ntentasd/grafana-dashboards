@@ -170,9 +170,9 @@
             "uid": "prometheus"
           },
           "editorMode": "code",
-          "expr": "histogram_quantile(0.99, sum(rate(etcd_disk_wal_fsync_duration_seconds_bucket[$__rate_interval])) by(le, instance))",
+          "expr": "histogram_quantile(0.99, sum(rate(etcd_disk_wal_fsync_duration_seconds_bucket[$__rate_interval])) by(le, instance, node))",
           "instant": false,
-          "legendFormat": "__auto",
+          "legendFormat": "{{node}}",
           "range": true,
           "refId": "A"
         }
@@ -275,9 +275,9 @@
             "uid": "prometheus"
           },
           "editorMode": "code",
-          "expr": "histogram_quantile(0.99, sum(rate(etcd_disk_backend_commit_duration_seconds_bucket[$__rate_interval])) by (le, instance))",
+          "expr": "histogram_quantile(0.99, sum(rate(etcd_disk_backend_commit_duration_seconds_bucket[$__rate_interval])) by (le, instance, node))",
           "instant": false,
-          "legendFormat": "__auto",
+          "legendFormat": "{{node}}",
           "range": true,
           "refId": "A"
         }
@@ -355,9 +355,9 @@
             "uid": "prometheus"
           },
           "editorMode": "code",
-          "expr": "avg by (instance) (1 - (etcd_mvcc_db_total_size_in_use_in_bytes / etcd_mvcc_db_total_size_in_bytes))",
+          "expr": "avg by (instance, node) (1 - (etcd_mvcc_db_total_size_in_use_in_bytes / etcd_mvcc_db_total_size_in_bytes))",
           "instant": false,
-          "legendFormat": "__auto",
+          "legendFormat": "{{node}}",
           "range": true,
           "refId": "A"
         }
@@ -449,7 +449,7 @@
           "editorMode": "code",
           "expr": "etcd_server_is_leader",
           "instant": false,
-          "legendFormat": "{{instance}}",
+          "legendFormat": "{{node}} - {{instance}}",
           "range": true,
           "refId": "A"
         }
@@ -518,7 +518,7 @@
           "editorMode": "code",
           "expr": "increase(etcd_server_leader_changes_seen_total[1h])",
           "instant": false,
-          "legendFormat": "{{instance}}",
+          "legendFormat": "{{node}} - {{instance}}",
           "range": true,
           "refId": "A"
         }
@@ -618,9 +618,9 @@
             "uid": "prometheus"
           },
           "editorMode": "code",
-          "expr": "sum(rate(etcd_server_proposals_failed_total[$__rate_interval])) by (instance)",
+          "expr": "sum(rate(etcd_server_proposals_failed_total[$__rate_interval])) by (instance, node)",
           "instant": false,
-          "legendFormat": "__auto",
+          "legendFormat": "{{node}}",
           "range": true,
           "refId": "A"
         }
@@ -766,9 +766,9 @@
             "uid": "prometheus"
           },
           "editorMode": "code",
-          "expr": "avg by (instance) (etcd_mvcc_db_total_size_in_use_in_bytes)",
+          "expr": "avg by (instance, node) (etcd_mvcc_db_total_size_in_use_in_bytes)",
           "instant": false,
-          "legendFormat": "{{instance}}",
+          "legendFormat": "{{node}}",
           "range": true,
           "refId": "A"
         },
@@ -855,9 +855,9 @@
             "uid": "prometheus"
           },
           "editorMode": "code",
-          "expr": "avg by (instance) (\n  etcd_mvcc_db_total_size_in_use_in_bytes\n  / etcd_server_quota_backend_bytes\n)",
+          "expr": "avg by (instance, node) (\n  etcd_mvcc_db_total_size_in_use_in_bytes\n  / etcd_server_quota_backend_bytes\n)",
           "instant": false,
-          "legendFormat": "__auto",
+          "legendFormat": "{{node}}",
           "range": true,
           "refId": "A"
         }
